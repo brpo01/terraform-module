@@ -91,3 +91,11 @@ output "dynamodb_table_name" {
 ```
 
 ## Terraform Modules and best practices to structure your .tf codes
+
+Modules serve as containers that allow to logically group Terraform codes for similar resources in the same domain (e.g., Compute, Networking, AMI, etc.). One root module can call other child modules and insert their configurations when applying Terraform config. This concept makes your code structure neater, and it allows different team members to work on different parts of configuration at the same time.
+
+You can also create and publish your modules to Terraform Registry for others to use and use someone’s modules in your projects.
+
+Module is just a collection of .tf and/or .tf.json files in a directory.
+
+You can refer to existing child modules from your root module by specifying them as a source, like this:
