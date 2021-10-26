@@ -1038,4 +1038,14 @@ module "efs" {
 }
 ```
 
-### 
+### Certificate Module
+
+- Create a folder called loadbalancing and add these three files - main.tf, variables.tf & outputs.tf.
+
+- Move efs.tf & kms.tf into the main.tf file in the loadbalancing folder.
+
+**main.tf**
+
+```
+
+```
