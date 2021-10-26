@@ -900,3 +900,132 @@ module "loadbalancing" {
   certificate_arn = module.certificate.cert_validation_arn
 }
 ```
+
+### EFS Module
+
+- Create a folder called loadbalancing and add these three files - main.tf, variables.tf & outputs.tf.
+
+- Move efs.tf & kms.tf into the main.tf file in the loadbalancing folder. 
+
+**main.tf**
+
+```
+# create key from key management system
+resource "aws_kms_key" "main-kms" {
+  description = "KMS key "
+  policy      = <<EOF
+  {
+  "Version": "2012-10-17",
+  "Id": "kms-key-policy",
+  "Statement": [
+    {
+      "Sid": "Enable IAM User Permissions",
+      "Effect": "Allow",
+      "Principal": { "AWS": "arn:aws:iam::${var.account_no}:user/Toby" },
+      "Action": "kms:*",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
+
+# create key alias
+resource "aws_kms_alias" "alias" {
+  name          = "alias/kms"
+  target_key_id = aws_kms_key.main-kms.key_id
+}
+
+# create Elastic file system
+resource "aws_efs_file_system" "main-efs" {
+  encrypted  = true
+  kms_key_id = aws_kms_key.main-kms.arn
+
+  tags = merge(
+    var.tags,
+    {
+      Name = "main-efs"
+    },
+  )
+}
+
+# set first mount target for the EFS 
+resource "aws_efs_mount_target" "subnet-1" {
+  file_system_id  = aws_efs_file_system.main-efs.id
+  subnet_id       = var.private_subnet0
+  security_groups = [var.datalayer-sg]
+}
+
+# set second mount target for the EFS 
+resource "aws_efs_mount_target" "subnet-2" {
+  file_system_id  = aws_efs_file_system.main-efs.id
+  subnet_id       = var.private_subnet1
+  security_groups = [var.datalayer-sg]
+}
+
+# create access point for wordpress
+resource "aws_efs_access_point" "wordpress" {
+  file_system_id = aws_efs_file_system.main-efs.id
+
+  posix_user {
+    gid = 0
+    uid = 0
+  }
+
+  root_directory {
+    path = "/wordpress"
+
+    creation_info {
+      owner_gid   = 0
+      owner_uid   = 0
+      permissions = 0755
+    }
+
+  }
+}
+
+# create access point for tooling
+resource "aws_efs_access_point" "tooling" {
+  file_system_id = aws_efs_file_system.main-efs.id
+  posix_user {
+    gid = 0
+    uid = 0
+  }
+
+  root_directory {
+
+    path = "/tooling"
+
+    creation_info {
+      owner_gid   = 0
+      owner_uid   = 0
+      permissions = 0755
+    }
+
+  }
+}
+```
+
+**variables.tf**
+
+```
+variable "private_subnet0" {}
+
+variable "private_subnet1" {}
+
+variable "datalayer-sg" {}
+
+variable "tags" {
+  description = "A mapping of tags to assign to all resources."
+  type        = map(string)
+  default     = {}
+}
+
+variable "account_no" {}
+```
+
+- Add outputs in the outputs.tf file. We'll be referencing these outputs in the root main.tf file. 
+
+```
+
+```
