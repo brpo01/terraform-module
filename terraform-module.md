@@ -116,7 +116,7 @@ module "network" {
   - RDS
   - Autoscaling
   - Compute
-  - Network
+  - Networking
   - Security
   - Certificate
 ```
