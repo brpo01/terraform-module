@@ -1138,3 +1138,17 @@ module "certificate" {
   ext-alb-zone-id = module.loadbalancing.ext-alb-zone-id
 }
 ```
+
+### RDS Module
+
+- Create a folder called rds and add these three files - main.tf, variables.tf & outputs.tf.
+
+- Move rds.tf into the main.tf file in the certificate folder.
+
+- Add outputs in the outputs.tf file. We'll be referencing these outputs in the root main.tf file.
+
+**main.tf**
+
+```
+
+```
