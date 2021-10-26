@@ -77,6 +77,12 @@ terraform {
 
 - Now its time to re-initialize the backend. Run terraform init and confirm you are happy to change the backend by typing yes. You have successfully migrated your state file form your local machine to a remote s3 bucket. Terraform will automatically read the latest state from the S3 bucket to determine the current state of the infrastructure.
 
+![1](https://user-images.githubusercontent.com/47898882/138969545-119e9b3f-c424-4bd3-9978-03524f3c8ff7.JPG)
+
+![3](https://user-images.githubusercontent.com/47898882/138969558-a5a79639-61e0-4c52-a318-9a002b956efb.JPG)
+
+![4](https://user-images.githubusercontent.com/47898882/138969539-3df67ea4-6ed8-469d-b120-8b55149a6b35.JPG)
+
 - Add the code below to the outputs.tf file
 
 ```
