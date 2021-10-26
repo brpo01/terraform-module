@@ -132,6 +132,8 @@ module "network" {
 
 ### Compute Module
 
-- Create a folder called compute and add these three files - main.tf variables.tf & outputs.tf
+- Create a folder called compute and add these three files - main.tf, variables.tf & outputs.tf
+
+- 
 
 
