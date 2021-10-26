@@ -1675,9 +1675,13 @@ output "dynamodb_table_name" {
 }
 ```
 
+- Also, define a terraform.tfvars file to keep your secret outputs.
+
 - Now we are done with refactoring our code into modules. Run *terraform plan* to see all the resources that will be created.
 
 ![2](https://user-images.githubusercontent.com/47898882/138969554-04245a17-5d3e-422c-a2b2-58789ddfacd6.JPG)
 
 
 - Now, the code is much more well-structured and can be easily read, edited and reused
+
+### You have done a great job developing and refactoring AWS Infrastructure as Code with Terraform!
