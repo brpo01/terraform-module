@@ -1598,8 +1598,86 @@ module "autoscaling" {
   tooling_launch_template = module.compute.tooling_launch_template
 ```
 
-- Now we are done with refactoring our code into modules. Run *terraform plan* to see all the resources that will be created
+- Also do not forget to add the root variables.tf & root outputs.tf file
+
+**root variables.tf**
+
+```
+variable "region" {
+  type = string
+  description = "The region to deploy resources"
+}
+
+variable "vpc_cidr" {
+  type = string
+  description = "The VPC cidr"
+}
+
+variable "name" {
+  type    = string
+  default = "main"
+}
+
+variable "tags" {
+  description = "A mapping of tags to assign to all resources."
+  type        = map(string)
+  default     = {}
+}
+
+variable "ami" {
+  type        = string
+  description = "AMI ID for the launch template"
+}
+
+variable "keypair" {
+  type        = string
+  description = "key pair for the instances"
+}
+
+variable "account_no" {
+  type        = number
+  description = "the account number"
+}
+
+variable "master-username" {
+  type        = string
+  description = "RDS admin username"
+}
+
+variable "master-password" {
+  type        = string
+  description = "RDS master password"
+}
+
+variable "environment" {
+  type = string
+}
+```
+
+**root outputs.tf**
+
+```
+output "alb_dns_name" {
+  value = module.loadbalancing.alb_dns_name
+}
+
+output "alb_target_group_arn" {
+  value = module.loadbalancing.alb_target_group_arn
+}
+
+output "s3_bucket_arn" {
+  value       = aws_s3_bucket.terraform_state.arn
+  description = "The ARN of the S3 bucket"
+}
+output "dynamodb_table_name" {
+  value       = aws_dynamodb_table.terraform_locks.name
+  description = "The name of the DynamoDB table"
+}
+```
+
+- Now we are done with refactoring our code into modules. Run *terraform plan* to see all the resources that will be created.
 
 ![2](https://user-images.githubusercontent.com/47898882/138969554-04245a17-5d3e-422c-a2b2-58789ddfacd6.JPG)
 
 
+- Now, the code is much more well-structured and can be easily read, edited and reused
