@@ -1573,3 +1573,21 @@ variable "wordpress_tgt_arn" {}
 
 variable "tooling_tgt_arn" {}
 ```
+
+**root main.tf**
+
+```
+module "autoscaling" {
+  source = "./autoscaling"
+  public_subnet0 = module.networking.public_subnet0
+  public_subnet1 = module.networking.public_subnet1
+  bastion_launch_template = module.compute.bastion_launch_template
+  nginx_launch_template = module.compute.nginx_launch_template
+  nginx_tgt_arn = module.loadbalancing.nginx_tgt_arn
+  wordpress_tgt_arn = module.loadbalancing.wordpress_tgt_arn
+  tooling_tgt_arn = module.loadbalancing.tooling_tgt_arn
+  private_subnet0 = module.networking.private_subnet0
+  private_subnet1 = module.networking.private_subnet1
+  wordpress_launch_template = module.compute.wordpress_launch_template
+  tooling_launch_template = module.compute.tooling_launch_template
+```
