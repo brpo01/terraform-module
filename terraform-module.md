@@ -903,9 +903,9 @@ module "loadbalancing" {
 
 ### EFS Module
 
-- Create a folder called loadbalancing and add these three files - main.tf, variables.tf & outputs.tf.
+- Create a folder called efs and add these three files - main.tf, variables.tf & outputs.tf.
 
-- Move efs.tf & kms.tf into the main.tf file in the loadbalancing folder. 
+- Move efs.tf & kms.tf into the main.tf file in the efs folder. 
 
 **main.tf**
 
@@ -1040,9 +1040,9 @@ module "efs" {
 
 ### Certificate Module
 
-- Create a folder called loadbalancing and add these three files - main.tf, variables.tf & outputs.tf.
+- Create a folder called certificate and add these three files - main.tf, variables.tf & outputs.tf.
 
-- Move efs.tf & kms.tf into the main.tf file in the loadbalancing folder.
+- Move cert.tf into the main.tf file in the certificate folder.
 
 **main.tf**
 
