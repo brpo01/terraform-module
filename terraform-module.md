@@ -89,3 +89,5 @@ output "dynamodb_table_name" {
   description = "The name of the DynamoDB table"
 }
 ```
+
+## Terraform Modules and best practices to structure your .tf codes
