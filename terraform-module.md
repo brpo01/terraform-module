@@ -105,3 +105,8 @@ module "network" {
   source = "./modules/network"
 }
 ```
+
+## Refactor Your Project Using Modules
+
+
+
