@@ -134,7 +134,7 @@ module "network" {
 
 - Create a folder called compute and add these three files - main.tf, variables.tf & outputs.tf
 
-- Move roles.tf & the launch templates into the main.tf file in the compute folder
+- Move roles.tf & the launch templates into the main.tf file in the compute folder.
 
 **main.tf**
 ```
@@ -346,4 +346,50 @@ resource "aws_launch_template" "tooling-launch-template" {
 }
 ```
 
+**variables.tf**
 
+```
+variable "tags" {
+  description = "A mapping of tags to assign to all resources."
+  type        = map(string)
+  default     = {}
+}
+
+variable "ami" {}
+
+variable "bastion-sg" {}
+
+variable "nginx-sg" {}
+
+variable "webserver-sg" {}
+
+variable "bastion_user_data" {}
+
+variable "nginx_user_data" {}
+
+variable "tooling_user_data" {}
+
+variable "wordpress_user_data" {}
+
+variable "keypair" {}
+```
+
+**outputs.tf**
+
+```
+output "bastion_launch_template" {
+    value = aws_launch_template.bastion-launch-template.id
+}
+
+output "nginx_launch_template" {
+    value = aws_launch_template.nginx-launch-template.id
+}
+
+output "wordpress_launch_template" {
+    value = aws_launch_template.wordpress-launch-template.id
+}
+
+output "tooling_launch_template" {
+    value = aws_launch_template.tooling-launch-template.id
+}
+```
