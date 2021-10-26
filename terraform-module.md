@@ -136,6 +136,8 @@ module "network" {
 
 - Move roles.tf & the launch templates into the main.tf file in the compute folder.
 
+- 
+
 **main.tf**
 ```
 resource "aws_iam_role" "ec2_instance_role" {
@@ -349,12 +351,6 @@ resource "aws_launch_template" "tooling-launch-template" {
 **variables.tf**
 
 ```
-variable "tags" {
-  description = "A mapping of tags to assign to all resources."
-  type        = map(string)
-  default     = {}
-}
-
 variable "ami" {}
 
 variable "bastion-sg" {}
@@ -372,6 +368,12 @@ variable "tooling_user_data" {}
 variable "wordpress_user_data" {}
 
 variable "keypair" {}
+
+variable "tags" {
+  description = "A mapping of tags to assign to all resources."
+  type        = map(string)
+  default     = {}
+}
 ```
 
 **outputs.tf**
