@@ -59,5 +59,5 @@ resource "aws_dynamodb_table" "terraform_locks" {
   }
 }
 ```
-- Run **terraform apply** to create both resources
+- Run **terraform apply** to create both resources. Terraform expects that both S3 bucket and DynamoDB resources are already created before we configure the backend. So, let us run terraform apply to provision resources.
 
