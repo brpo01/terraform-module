@@ -128,5 +128,8 @@ module "network" {
 - variables.tf (it is a good practice not to hard code the values and use variables)
 ```
 
+- It is also recommended to configure providers and backends sections in separate files.
+
+
 
 
