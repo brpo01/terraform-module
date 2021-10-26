@@ -851,4 +851,52 @@ resource "aws_lb_listener_rule" "tooling-listener" {
 }
 ```
 
-- Add outputs in the outputs.tf. We'll be referencing these outputs in the root main.tf file. 
+- Add outputs in the outputs.tf file. We'll be referencing these outputs in the root main.tf file. 
+
+**outputs.tf** 
+
+```
+output "alb_dns_name" {
+  value = aws_lb.ext-alb.dns_name
+}
+
+output "alb_target_group_arn" {
+  value = aws_lb_target_group.nginx-tgt.arn
+}
+
+output "ext-alb-zone-id" {
+    value = aws_lb.ext-alb.zone_id
+}
+
+output "ext-alb-dns-name" {
+    value = aws_lb.ext-alb.dns_name
+}
+
+output "nginx_tgt_arn" {
+    value = aws_lb_target_group.nginx-tgt.arn
+}
+
+output "wordpress_tgt_arn" {
+    value = aws_lb_target_group.wordpress-tgt.arn
+}
+
+output "tooling_tgt_arn" {
+    value = aws_lb_target_group.tooling-tgt.arn
+}
+```
+
+**root main.tf**
+
+```
+module "loadbalancing" {
+  source = "./loadbalancing"
+  ext-alb-sg = module.security.ext-alb
+  public_subnet0 = module.networking.public_subnet0
+  public_subnet1 = module.networking.public_subnet1
+  vpc_id = module.networking.vpc_id
+  int-alb-sg = module.security.int-alb
+  private_subnet0 = module.networking.private_subnet0
+  private_subnet1 = module.networking.private_subnet1
+  certificate_arn = module.certificate.cert_validation_arn
+}
+```
