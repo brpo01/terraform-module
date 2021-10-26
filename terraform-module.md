@@ -136,6 +136,8 @@ module "network" {
 
 - Move roles.tf & the launch templates into the main.tf file in the compute folder.
 
+- Add outputs in the outputs.tf. We'll be referencing these outputs in the root main.tf file. Also create a user-data folder for your user-data scripts 
+
 **main.tf**
 ```
 resource "aws_iam_role" "ec2_instance_role" {
@@ -373,8 +375,6 @@ variable "tags" {
   default     = {}
 }
 ```
-
-- Add outputs in the outputs.tf. We'll be referencing these outputs in the root main.tf file. Also create a user-data folder for your user-data scripts 
 
 **outputs.tf**
 
