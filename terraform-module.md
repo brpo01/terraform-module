@@ -1591,3 +1591,6 @@ module "autoscaling" {
   wordpress_launch_template = module.compute.wordpress_launch_template
   tooling_launch_template = module.compute.tooling_launch_template
 ```
+
+- Now we are done with refactoring our code into modules. Run *terraform plan* to see all the resources that will be created
+
