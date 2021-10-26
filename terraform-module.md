@@ -17,7 +17,7 @@ Another useful option that is supported by S3 backend is State Locking – it is
 
 Here is our plan to Re-initialize Terraform to use S3 backend:
 
-- Add S3 and DynamoDB resource blocks before deleting the local state file
+- Add S3 and DynamoDB resource blocks before deleting the local state file.
 - Update terraform block to introduce backend and locking
 - Re-initialize terraform
 - Delete the local tfstate file and check the one in S3 bucket
@@ -26,7 +26,7 @@ Here is our plan to Re-initialize Terraform to use S3 backend:
 
 Now let us begin configuring the remote backend
 
-- Create a file and name it backends.tf. Add the below code. Before you initialize create an s3 bucket resource on your aws account and use the name you specified in your code - "dev-terraform-bucket"
+- Create a file and name it backends.tf. Add the below code. Before you initialize create an s3 bucket resource on your aws account and use the name you specified in your code - "dev-terraform-bucket". You must also be aware that Terraform stores secret data inside the state files. Passwords, and secret keys processed by resources are always stored in there. Hence, you must consider to always enable encryption. You can see how we achieved that with server_side_encryption_configuration.
 
 ```
 # Note: The bucket name may not work for you since buckets are unique globally in AWS, so you must give it a unique name.
@@ -46,3 +46,4 @@ resource "aws_s3_bucket" "terraform_state" {
   }
 }
 ```
+- 
