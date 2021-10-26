@@ -415,9 +415,11 @@ module "compute" {
 
 ### Networking Module
 
-- Create a folder called compute and add these three files - main.tf, variables.tf & outputs.tf
+- Create a folder called networking and add these three files - main.tf, variables.tf & outputs.tf.
 
-- Move roles.tf & the launch templates into the main.tf file in the compute folder.
+- Move internetgateway.tf, natgateway.tf into the main.tf file in the compute folder. Also move the the VPC & subnets originally in the root folder into the networking folder.
+
+**main.tf**
 
 ```
 # Get list of availability zones
@@ -566,4 +568,96 @@ resource "aws_route" "public-rtb-route" {
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.main_igw.id
 }
+```
+
+**variables.tf**
+
+```
+variable "vpc_cidr" {
+  type = string
+  description = "The VPC cidr"
+}
+
+variable "enable_dns_support" {
+  type = bool
+}
+
+variable "enable_dns_hostnames" {
+  type = bool
+}
+
+variable "enable_classiclink" {
+  type = bool
+}
+
+variable "enable_classiclink_dns_support" {
+  type = bool
+}
+
+variable "public_sn_count" {
+  type        = number
+  description = "Number of public subnets"
+}
+
+variable "private_sn_count" {
+  type        = number
+  description = "Number of private subnets"
+}
+
+variable "tags" {
+  description = "A mapping of tags to assign to all resources."
+  type        = map(string)
+  default     = {}
+}
+
+variable "public_cidr" {}
+
+variable "private_cidr" {}
+
+variable "name" {
+  type    = string
+  default = "main"
+}
+
+variable "environment" {
+  type = string
+  default = "production"
+}
+```
+
+- Add outputs in the outputs.tf. We'll be referencing these outputs in the root main.tf file. 
+
+```
+output "vpc_id" {
+    value = aws_vpc.main.id
+}
+
+output "public_subnet0" {
+    value = aws_subnet.public_subnet[0].id
+}
+
+output "public_subnet1" {
+    value = aws_subnet.public_subnet[1].id
+}
+
+output "private_subnet0" {
+    value = aws_subnet.private_subnet[0].id
+}
+
+output "private_subnet1" {
+    value = aws_subnet.private_subnet[1].id
+}
+
+output "private_subnet2" {
+    value = aws_subnet.private_subnet[2].id
+}
+
+output "private_subnet3" {
+    value = aws_subnet.private_subnet[3].id
+}
+```
+
+**root main.tf**
+
+```
 ```
