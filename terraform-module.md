@@ -74,3 +74,18 @@ terraform {
   }
 }
 ```
+
+- Now its time to re-initialize the backend. Run terraform init and confirm you are happy to change the backend by typing yes. You have successfully migrated your state file form your local machine to a remote s3 bucket. Terraform will automatically read the latest state from the S3 bucket to determine the current state of the infrastructure.
+
+- Add the code below to the outputs.tf file
+
+```
+output "s3_bucket_arn" {
+  value       = aws_s3_bucket.terraform_state.arn
+  description = "The ARN of the S3 bucket"
+}
+output "dynamodb_table_name" {
+  value       = aws_dynamodb_table.terraform_locks.name
+  description = "The name of the DynamoDB table"
+}
+```
