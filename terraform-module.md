@@ -1026,6 +1026,14 @@ variable "account_no" {}
 
 - Add outputs in the outputs.tf file. We'll be referencing these outputs in the root main.tf file. 
 
-```
+**root main.tf**
 
+```
+module "efs" {
+  source = "./efs"
+  account_no = var.account_no
+  private_subnet0 = module.networking.private_subnet0
+  private_subnet1 = module.networking.private_subnet1
+  datalayer-sg = module.security.datalayer
+}
 ```
