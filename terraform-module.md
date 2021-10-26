@@ -673,3 +673,9 @@ module "networking" {
   private_cidr = [for i in range(1,9,2): cidrsubnet(var.vpc_cidr, 8, i)]
 }
 ```
+
+### Loadbalancing Module
+
+- Create a folder called networking and add these three files - main.tf, variables.tf & outputs.tf.
+
+- Move internetgateway.tf, natgateway.tf into the main.tf file in the compute folder. Also move the the VPC & subnets originally in the root folder into the networking folder.
