@@ -136,7 +136,7 @@ module "network" {
 
 - Move roles.tf & the launch templates into the main.tf file in the compute folder.
 
-- 
+- Add outputs in the outputs.tf. We'll be referencing these outputs in the root main.tf file.
 
 **main.tf**
 ```
@@ -393,5 +393,22 @@ output "wordpress_launch_template" {
 
 output "tooling_launch_template" {
     value = aws_launch_template.tooling-launch-template.id
+}
+```
+
+**root main.tf**
+
+```
+module "compute" {
+  source = "./compute"
+  ami = var.ami
+  bastion-sg = module.security.bastion
+  nginx-sg = module.security.nginx
+  webserver-sg = module.security.webservers
+  keypair = var.keypair
+  bastion_user_data = filebase64("${path.module}/user-data/bastion.sh")
+  nginx_user_data = filebase64("${path.module}/user-data/nginx.sh")
+  wordpress_user_data = filebase64("${path.module}/user-data/wordpress.sh")
+  tooling_user_data = filebase64("${path.module}/user-data/tooling.sh")
 }
 ```
