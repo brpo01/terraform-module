@@ -120,7 +120,13 @@ module "network" {
   - Security
   - Certificate
 ```
+ - Each module shall contain following files:
 
+```
+- main.tf (or %resource_name%.tf) file(s) with resources blocks
+- outputs.tf (optional, if you need to refer outputs from any of these resources in your root module)
+- variables.tf (it is a good practice not to hard code the values and use variables)
+```
 
 
 
