@@ -419,6 +419,8 @@ module "compute" {
 
 - Move internetgateway.tf, natgateway.tf into the main.tf file in the compute folder. Also move the the VPC & subnets originally in the root folder into the networking folder.
 
+- Add outputs in the outputs.tf. We'll be referencing these outputs in the root main.tf file.
+
 **main.tf**
 
 ```
@@ -625,8 +627,6 @@ variable "environment" {
 }
 ```
 
-- Add outputs in the outputs.tf. We'll be referencing these outputs in the root main.tf file. 
-
 ```
 output "vpc_id" {
     value = aws_vpc.main.id
@@ -679,6 +679,8 @@ module "networking" {
 - Create a folder called loadbalancing and add these three files - main.tf, variables.tf & outputs.tf.
 
 - Move ext-alb.tf & int-alb.tf into the main.tf file in the loadbalancing folder. 
+
+- Add outputs in the outputs.tf file. We'll be referencing these outputs in the root main.tf file. 
 
 **main.tf**
 
@@ -851,8 +853,6 @@ resource "aws_lb_listener_rule" "tooling-listener" {
 }
 ```
 
-- Add outputs in the outputs.tf file. We'll be referencing these outputs in the root main.tf file. 
-
 **outputs.tf** 
 
 ```
@@ -906,6 +906,8 @@ module "loadbalancing" {
 - Create a folder called efs and add these three files - main.tf, variables.tf & outputs.tf.
 
 - Move efs.tf & kms.tf into the main.tf file in the efs folder. 
+
+- Add outputs in the outputs.tf file. We'll be referencing these outputs in the root main.tf file.
 
 **main.tf**
 
@@ -1024,8 +1026,6 @@ variable "tags" {
 variable "account_no" {}
 ```
 
-- Add outputs in the outputs.tf file. We'll be referencing these outputs in the root main.tf file. 
-
 **root main.tf**
 
 ```
@@ -1043,6 +1043,8 @@ module "efs" {
 - Create a folder called certificate and add these three files - main.tf, variables.tf & outputs.tf.
 
 - Move cert.tf into the main.tf file in the certificate folder.
+
+- Add outputs in the outputs.tf file. We'll be referencing these outputs in the root main.tf file.
 
 **main.tf**
 
@@ -1119,8 +1121,6 @@ variable "ext-alb-dns-name" {}
 
 variable "ext-alb-zone-id" {}
 ```
-
-- Add outputs in the outputs.tf file. We'll be referencing these outputs in the root main.tf file.
 
 **outputs.tf**
 ```
