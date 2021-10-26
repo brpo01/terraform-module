@@ -1600,6 +1600,6 @@ module "autoscaling" {
 
 - Now we are done with refactoring our code into modules. Run *terraform plan* to see all the resources that will be created
 
-![3](https://user-images.githubusercontent.com/47898882/138969558-a5a79639-61e0-4c52-a318-9a002b956efb.JPG)
+![2](https://user-images.githubusercontent.com/47898882/138969554-04245a17-5d3e-422c-a2b2-58789ddfacd6.JPG)
 
 
