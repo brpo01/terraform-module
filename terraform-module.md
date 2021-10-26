@@ -128,8 +128,10 @@ module "network" {
 - variables.tf (it is a good practice not to hard code the values and use variables)
 ```
 
-- It is also recommended to configure providers and backends sections in separate files.
+- It is also recommended to configure providers and backends sections in separate files. Now let us break our terraform code into modules
 
+### Compute Module
 
+- Create a folder called compute and add these three files - main.tf variables.tf & outputs.tf
 
 
