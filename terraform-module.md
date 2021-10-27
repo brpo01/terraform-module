@@ -108,7 +108,7 @@ You can refer to existing child modules from your root module by specifying them
 
 ```
 module "network" {
-  source = "./modules/network"
+  source = "./network"
 }
 ```
 
