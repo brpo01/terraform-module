@@ -107,8 +107,8 @@ Module is just a collection of .tf and/or .tf.json files in a directory.
 You can refer to existing child modules from your root module by specifying them as a source, like this:
 
 ```
-module "network" {
-  source = "./network"
+module "networking" {
+  source = "./networking"
 }
 ```
 
