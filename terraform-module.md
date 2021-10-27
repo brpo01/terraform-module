@@ -423,7 +423,7 @@ module "compute" {
 
 - Create a folder called networking and add these three files - main.tf, variables.tf & outputs.tf.
 
-- Move internetgateway.tf, natgateway.tf into the main.tf file in the compute folder. Also move the the VPC & subnets originally in the root folder into the networking folder.
+- Move internetgateway.tf, natgateway.tf into the main.tf file in the compute folder. Also move the the VPC & subnets originally in the root main.tf into the networking folder.
 
 - Add outputs in the outputs.tf. We'll be referencing these outputs in the root main.tf file.
 
