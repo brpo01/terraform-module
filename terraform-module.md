@@ -1684,4 +1684,4 @@ output "dynamodb_table_name" {
 
 - Now, the code is much more well-structured and can be easily read, edited and reused
 
-### You have done a great job developing and refactoring AWS Infrastructure as Code with Terraform!
+### Congratulations!!..You have refactored AWS Infrastructure as Code with Terraform!
