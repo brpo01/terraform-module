@@ -1600,7 +1600,7 @@ module "autoscaling" {
   tooling_launch_template = module.compute.tooling_launch_template
 ```
 
-- Also do not forget to add the root variables.tf & root outputs.tf file
+- Also, Add the following code to the root variables.tf & root outputs.tf file
 
 **root variables.tf**
 
