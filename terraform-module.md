@@ -114,7 +114,7 @@ module "network" {
 
 ## Refactor Your Project Using Modules
 
-- Break down your Terraform codes to have all resources in their respective modules. Combine resources of a similar type into directories within a ‘modules’ directory, for example, like this:
+- Break down your Terraform codes to have all resources in their respective modules. Combine resources of a similar type into directories within a directory, for example, like this:
 
 ```
   - Loadbalancing
